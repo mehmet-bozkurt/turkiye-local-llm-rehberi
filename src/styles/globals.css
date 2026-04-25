@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ────────────── Aydınlık tema (default) ──────────────
+     Shadcn default light palette + mevcut markanın cyan/violet hue aileleri.
+     Beyaz zemin (L=100%) üstünde yeterli contrast için primary/accent
+     biraz daha koyu (L≈42-52%).
+  */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 199 89% 42%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 263 70% 52%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 199 89% 42%;
+
+    --radius: 0.75rem;
+
+    --chart-1: 199 89% 48%;
+    --chart-2: 263 70% 56%;
+    --chart-3: 142 71% 40%;
+    --chart-4: 38 92% 48%;
+    --chart-5: 340 82% 55%;
+  }
+
+  /* ────────────── Karanlık tema (.dark class) ──────────────
+     Eski `:root` değerleri birebir korundu — karanlık tema görüntüsü
+     değişmez; yalnızca `.dark` class'ı html'e eklendiğinde aktif.
+  */
+  .dark {
+    --background: 224 47% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 223 40% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 223 40% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 54%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 263 70% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 18%;
+    --input: 217 32% 18%;
+    --ring: 199 89% 54%;
+
+    --chart-1: 199 89% 54%;
+    --chart-2: 263 70% 60%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 38 92% 55%;
+    --chart-5: 340 82% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+
+  body {
+    min-height: 100vh;
+    background-attachment: fixed;
+    /* Aydınlık tema: daha düşük opaklık — beyaz zeminde vurgu yumuşak kalsın. */
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(199 89% 54% / 0.08),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 85% 30%,
+        hsl(263 70% 60% / 0.05),
+        transparent
+      );
+  }
+
+  /* Karanlık tema: orijinal opaklıklar korunarak aynı "atmosfer" */
+  .dark body {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        hsl(199 89% 54% / 0.12),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 85% 30%,
+        hsl(263 70% 60% / 0.08),
+        transparent
+      );
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--secondary));
+    border-radius: 10px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted));
+  }
+}
+
+@layer components {
+  .card-surface {
+    @apply rounded-2xl border border-border/60 bg-card/60 backdrop-blur-sm;
+  }
+
+  .section-gradient-text {
+    @apply bg-gradient-to-br from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  /* Hover kuralına uygun card hover: translate yok, sadece shadow + border */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    @apply border-primary/40 shadow-lg shadow-primary/10;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

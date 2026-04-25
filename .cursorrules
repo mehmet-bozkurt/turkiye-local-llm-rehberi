@@ -1,0 +1,34 @@
+# LocalAI Dashboard - Project Intelligence
+
+## Proje Tipi
+Saf client-side React + TypeScript SPA. Backend YOK. Statik deploy edilebilir.
+
+## Kritik Kurallar
+1. **Hover efektleri**: `transform: translateY(...)` ve `translateX(...)` yasaktır. Sadece `scale`, `shadow`, `opacity`, `color`, `border-color` değişiklikleri kullanılır.
+2. **Veri tek kaynak**: Tüm model/donanım/runtime bilgisi `src/data/*.ts` altında. String literal kullanma, her zaman ID üzerinden referans.
+3. **Dil**: UI metinleri Türkçe. Teknik terimler (VRAM, token, quantization, Ollama) orijinal kalır.
+4. **Memory Bank**: `memory-bank/` altındaki 6 dosya (projectbrief, productContext, systemPatterns, techContext, activeContext, progress) her önemli değişiklikten sonra güncellenir.
+
+## Stil
+- Koyu tema varsayılan (`html class="dark"`).
+- Primary = cyan, accent = mor.
+- Tüm panel/kart bileşenleri `card-surface` veya shadcn-style `<Card />`.
+- Font: Inter + JetBrains Mono (Google Fonts).
+
+## Dosya Yerleşimi
+- `src/components/ui/` → primitive'ler (shadcn stili).
+- `src/components/charts/` → Recharts sarmalayıcıları.
+- `src/components/sections/` → 00-08 arası numaralı içerik blokları.
+- `src/data/` → veri objeleri.
+- `src/lib/` → saf hesaplama fonksiyonları.
+- `src/types/` → paylaşılan TS tipleri.
+
+## Sık Karşılaşılan Desenler
+- `cn(...)` utility ile className birleştirme (`@/lib/utils`).
+- Chart bileşenleri `ResponsiveContainer` ile sarılır.
+- Her bölüm bir `<section id="...">` taşır; SideNav `IntersectionObserver` ile dinler.
+
+## Yeni Veri Ekleme Süreci
+1. İlgili `src/data/*.ts` dosyasına yeni obje ekle.
+2. `activeContext.md` ve `progress.md` güncelle.
+3. Gerekirse section'a yorum/markdown notu ekle.

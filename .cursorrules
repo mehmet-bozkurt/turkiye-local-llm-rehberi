@@ -8,6 +8,7 @@ Saf client-side React + TypeScript SPA. Backend YOK. Statik deploy edilebilir.
 2. **Veri tek kaynak**: Tüm model/donanım/runtime bilgisi `src/data/*.ts` altında. String literal kullanma, her zaman ID üzerinden referans.
 3. **Dil**: UI metinleri Türkçe. Teknik terimler (VRAM, token, quantization, Ollama) orijinal kalır.
 4. **Memory Bank**: `memory-bank/` altındaki 6 dosya (projectbrief, productContext, systemPatterns, techContext, activeContext, progress) her önemli değişiklikten sonra güncellenir.
+5. **Git işlemleri**: `git commit` ve `git push` işlemlerini ASLA ben yapmayayım. Kullanıcı kendisi yapsın. Sadece komutları önerebilirim.
 
 ## Stil
 - Koyu tema varsayılan (`html class="dark"`).
